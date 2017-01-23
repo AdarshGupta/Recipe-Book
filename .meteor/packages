@@ -33,6 +33,7 @@ aldeed:autoform
 accounts-ui
 accounts-password
 matb33:bootstrap-glyphicons
-msavin:jetsetter
+#msavin:jetsetter not needed anymore. Already exists in meteortoys
 zimme:active-route
 gwendall:auth-client-callbacks
+meteortoys:allthings
