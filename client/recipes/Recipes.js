@@ -1,4 +1,12 @@
-Meteor.subscribe('recipes');
+// Meteor.subscribe('recipes');  Replaced with subscription at template level instead of whole client-side subscription
+
+// Subscription at template level
+Template.Recipes.onCreated(function() {
+	var self = this;
+	self.autorun(function(){
+		self.subscribe('recipes');
+	});
+});
 
 console.log(Meteor.settings.public.ga.account);
 
