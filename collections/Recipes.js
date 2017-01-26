@@ -3,12 +3,12 @@ Recipes = new Mongo.Collection('recipes');
 // Since we have removed the insecure package. This says who is allowed to insert
 Recipes.allow({
 	insert: function (userId, doc) {
+		return !!userId;	
+	},
+	update: function (userId, doc, fields, modifier) {
+		//...
 		return !!userId;
 	}
-	// },
-	// update: function (userId, doc, fields, modifier) {
-	// 	//...
-	// },
 	// remove: function (userId, doc) {
 	// 	//...
 	// },
@@ -67,6 +67,18 @@ RecipeSchema = new SimpleSchema({
 		autoform: {
 			type: "hidden"
 		}
+	}
+});
+
+
+// To toggle the recipe in menu ie add or emove item
+Meteor.methods({
+	toggleMenuItem: function (id, currentState) {
+		// ...
+		Recipes.update(id, {
+			$set: {
+				inMenu: !currentState
+			}});
 	}
 });
 
