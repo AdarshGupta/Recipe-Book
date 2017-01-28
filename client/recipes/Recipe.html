@@ -1,17 +1,35 @@
 <template name="Recipe">
 	<article class="recipe {{#if inMenu}}in-menu{{/if}}">
 		<h3>{{name}}</h3>
-		<p>{{description}}</p>
-		<p>
+		<!-- To not load ony unneccesary details -->
+		{{#if editMode}}  <!-- $.Session.get 'editMode' -->
+			{{> quickForm collection="Recipes" id=updateRecipeId type="update" doc=this autosave=true}} 
+		<!-- doc is this to indicate that particular recipe -->
+		<!-- updateRecipeId is a variable in this case . check recipe .js --> 
+		<!-- Instead of all these we can set id = _id  -->
+		<!-- autosave=true ==== After shifting focus from input field it auto saves -->
+		{{else}}
+			<p>{{desc}}</p>
+			<p>
 			{{#each ingredients}}
 				<span class="ingredient">{{name}} - {{amount}}</span>
 			{{/each}}
-		</p>
+			</p>
 		<a href="/recipe/{{_id}}">View Details</a>
+		{{/if}}
+
 		{{#if inMenu}}
 			<button class="btn-deny toggle-menu">Remove From Menu</button>
 		{{else}}			
 			<button class="btn-primary toggle-menu">Add To Menu</button>
 		{{/if}}
+
+		<p>{{description}}</p>
+		
+		<i class="fa fa-pencil"></i>
+		<i class="fa fa-trash"></i>
+		
+		
+		
 	</article>
 </template>

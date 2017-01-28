@@ -25,3 +25,10 @@ Template.Recipes.helpers({
 		});
 	}
 });
+
+Template.Recipes.events({
+	'click .new-recipe': function () {
+		// ...
+		Session.set('newRecipe', true);
+	}
+});
